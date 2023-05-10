@@ -2,9 +2,9 @@
 
 int main(void)
 {
-	char *buf;
+
 
 	prompt_user();
-	my_getline(&buf,n,stdin);
+	my_getline();
 	return (0);
 }

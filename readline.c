@@ -7,7 +7,7 @@ void prompt_user(void)
 {
 	char *buf;
 
-	buf = "$ ";
+	buf = "$";
 	write(STDOUT_FILENO, buf, _strlen(buf));
 }
 
@@ -18,43 +18,67 @@ void prompt_user(void)
  * @stream: a line from stdin
  * Return: string from stdin
  */
-char *my_getline(void)
+char *my_getline()
 {
 	ssize_t nread;
-	int buf_size;
-	char *buf, *new_buf;
-	
+	int buf_size, byte_size;
+	char *new_buf, *tmp;
+	char buf;
+
+
+	buf = 0;
 	buf_size = BUFFER_SIZE;
-	buf = malloc(sizeof(char) * buf_size);
-	if (buf == NULL);
+	new_buf = malloc(sizeof(char) * buf_size);
+	if (new_buf == NULL)
 	{
-		free(buf);
-		exit(EXIT_SUCCESS);
+		perror("malloc failed");
+		free(new_buf);
+		exit(EXIT_FAILURE);
 	}
 
-	while (buf != EOF && != '\n')
+	byte_size = 0;
+	while (buf != EOF && buf != '\n')
 	{
-		nread = read(STDIN_FILENO, &buf, buf_size);
+		nread = read(STDIN_FILENO, &new_buf[byte_size], 1);
 		if (nread == 0)
 		{
-			free(buf);
-			exit(EXIT_SUCCESS);
+			if (byte_size == 0)
+			{
+				free(new_buf);
+				return (NULL);
+			}
+			else 
+			{
+				break;
+			}
 		}
 		else
 		{
-			free(buf)
-				exit(EXIT_FAILURE);
-		}/*END HERE*/
+			perror("read failed");
+			free(new_buf);
+			exit(EXIT_FAILURE);
+		}
 
-
-	stream = stdin;
-	n = _strlen(stream);
-	lineptr = &buf;
-
-	while (stream != NULL)
-	{
-		buf = malloc(sizeof(char) * n);
-		buf = stream;
+		byte_size++;
+		if (byte_size == buf_size)
+		{
+			buf_size = buf_size * 2;
+			tmp = realloc(new_buf, buf_size);
+				if (tmp == NULL)
+				{
+					perror("realloc failed");
+					free(new_buf);
+					exit(EXIT_FAILURE);
+				}
+			new_buf = tmp;
+		}
+		if (new_buf[byte_size - 1] == '\n')
+		{
+			break;
+		}
 	}
-	return (buf);
+	
+	new_buf[byte_size - 1] = '\0';
+	return (new_buf);
 }
+	
