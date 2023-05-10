@@ -17,7 +17,7 @@ extern char **environ;
 #include <signal.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <errno.h
+#include <errno.h>
 
 /*MACROS*/
 
