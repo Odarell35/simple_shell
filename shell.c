@@ -8,6 +8,7 @@ int main(__attribute__((unused))int argc, char **argv)
 	while (argv[i] != NULL)
 	{
 		print_string(argv[i]);
+		_putchar('\n');
 		i++;
 	}
 	return (0);
