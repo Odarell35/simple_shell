@@ -7,7 +7,7 @@ void prompt_user(void)
 {
 	char *buf;
 
-	buf = "$";
+	buf = "$ ";
 	write(STDOUT_FILENO, buf, _strlen(buf));
 }
 
@@ -18,7 +18,7 @@ void prompt_user(void)
  * @stream: a line from stdin
  * Return: string from stdin
  */
-char *my_getline()
+ssize_t my_getline()
 {
 	ssize_t nread;
 	int buf_size, byte_size;
@@ -45,7 +45,7 @@ char *my_getline()
 			if (byte_size == 0)
 			{
 				free(new_buf);
-				return (NULL);
+				return (0);
 			}
 			else 
 			{
@@ -79,6 +79,7 @@ char *my_getline()
 	}
 	
 	new_buf[byte_size - 1] = '\0';
-	return (new_buf);
+/*	nwrite = write(1, new_buf, nread);*/
+	return (write(1, new_buf, nread));
 }
 	
