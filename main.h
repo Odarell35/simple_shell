@@ -22,6 +22,11 @@ extern char **environ;
 /*MACROS*/
 #define BUFFER_SIZE 1024
 
+/*prototypes for builtin*/
+int get_display_env();
+int change_dir(char *command);
+void create_env(char **env);
+
 /*prototypes for helper functions*/
 int _strlen(const char *s);
 int _strcmp(char *s1, const char *s2);
