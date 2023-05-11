@@ -45,7 +45,7 @@ void print_number(int n);
 size_t _strspn(const char *s, const char *accept);
 
 /*prototypes for readline*/
-char *my_getline();
+ssize_t my_getline();
 void prompt_user(void);
 
 #endif
