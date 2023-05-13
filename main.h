@@ -48,4 +48,6 @@ size_t _strspn(const char *s, const char *accept);
 ssize_t my_getline();
 void prompt_user(void);
 
+/*prototype for path*/
+char *_getenv(const char* name);
 #endif

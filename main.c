@@ -14,6 +14,8 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char *argv[], c
 	char *args[10];
 
 
+	while (1)
+{
 	buf_size = BUFFER_SIZE;
 	n = 0;
 	delim = " ";
@@ -21,7 +23,16 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char *argv[], c
 	str = malloc(sizeof (char) * buf_size);
 	prompt_user();
 	n = getline(&buf, &buf_size, stdin);
+	if (n == -1)
+	{
+		perror("getline failed");
+		free(buf);
+		exit(EXIT_FAILURE);
+	}
+
 	write(STDOUT_FILENO, buf, n);
+	if (buf[n - 1] == '\n')
+	{buf[n - 1] = '\0';}
 	_strcpy(str, buf);
 	token = strtok(str, delim);
 	i = 0;
@@ -59,5 +70,6 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char *argv[], c
 	free(buf);
 	free(token);
 	free(str);
+}
 	return (0);
 }
