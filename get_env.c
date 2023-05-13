@@ -21,12 +21,4 @@ void create_env(char **env)
         env[i] = NULL;
 
 }
-int main(void)
-{
-	int i;
 
-	create_env(environ);
-	for (i = 0; environ[i] != NULL; i++)
-	printf("%s\n", environ[i]);
-return(0);
-}
