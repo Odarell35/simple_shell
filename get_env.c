@@ -21,4 +21,17 @@ void create_env(char **env)
         env[i] = NULL;
 
 }
+/**
+ * get_path - the path of has the directories
+ * Return: string with the path
+ */
 
+char *get_path(void)
+{
+	char *path = create_env("PATH");
+	if (path == NULL)
+	{
+		perror("failed to get path");
+	}
+	return (path);
+}
