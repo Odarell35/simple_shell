@@ -8,7 +8,7 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char *argv[], c
 	ssize_t n, exe;
 	pid_t pid;
 	char *str;
-	int i, k, status;
+	int i, status;
 	size_t buf_size;
 	char *buf, *token, *delim;
 	char *args[10];
@@ -25,12 +25,14 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char *argv[], c
 	n = getline(&buf, &buf_size, stdin);
 	if (n == -1)
 	{
-		perror("getline failed");
+	_putchar('\n');	
 		free(buf);
-		exit(EXIT_FAILURE);
+		free(str);
+		free(token);
+		exit(EXIT_SUCCESS);
 	}
 
-	write(STDOUT_FILENO, buf, n);
+	/*write(STDOUT_FILENO, buf, n);*/
 	if (buf[n - 1] == '\n')
 	{buf[n - 1] = '\0';}
 	_strcpy(str, buf);
@@ -43,10 +45,20 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char *argv[], c
 			i++;
 		}
 		args[i] = NULL;
-		for (k = 0; args[k] != NULL; k++)
+		
+	if (_strcmp(args[0], "exit") == 0)
+	{
+		free(buf);
+		free(str);
+		free(token);
+		exit(EXIT_SUCCESS);
+	}
+
+	/*	for (k = 0; args[k] != NULL; k++)
 		{
 			printf("%s\n", args[k]);
-		}
+		}*/
+		
 		 pid = fork();
 
                     	if (pid == -1)

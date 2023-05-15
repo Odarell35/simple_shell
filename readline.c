@@ -8,7 +8,7 @@ void prompt_user(void)
 	char *buf;
 
 	buf = "$ ";
-	write(STDOUT_FILENO, buf, strlen(buf));
+	write(STDOUT_FILENO, buf, _strlen(buf));
 }
 
 /**

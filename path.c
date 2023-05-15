@@ -14,7 +14,7 @@ char *_getenv(const char* name)
     }
 
     for ( env = environ; *env != NULL; env++) {
-        len = strlen(name);
+        len = _strlen(name);
         if (_strncmp(name, *env, len) == 0 && (*env)[len] == '=') {
             /* Found the environment variable, extract the value and return it*/
             return (_strdup(*env + len + 1));

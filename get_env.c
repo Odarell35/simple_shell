@@ -10,7 +10,7 @@ void create_env(char **env)
 
         /* Copy each environment variable into the array */
         for (i = 0; environ[i]; i++) {
-                env[i] = strdup(environ[i]);
+                env[i] = _strdup(environ[i]);
                 if (env[i] == NULL) {
                         /* Handle error if strdup fails */
                         exit(EXIT_FAILURE);
@@ -24,7 +24,7 @@ void create_env(char **env)
 /**
  * get_path - the path of has the directories
  * Return: string with the path
- */
+ 
 
 char *get_path(void)
 {
@@ -34,4 +34,4 @@ char *get_path(void)
 		perror("failed to get path");
 	}
 	return (path);
-}
+}*/
