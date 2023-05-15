@@ -22,6 +22,7 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char *argv[], c
 	buf = malloc(sizeof(char) * buf_size);
 	str = malloc(sizeof (char) * buf_size);
 	prompt_user();
+	signal(SIGINT, handle_signal);
 	n = getline(&buf, &buf_size, stdin);
 	if (n == -1)
 	{
