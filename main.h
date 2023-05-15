@@ -23,9 +23,9 @@ extern char **environ;
 #define BUFFER_SIZE 1024
 
 /*prototypes for builtin*/
-int get_display_env();
+int get_display_env(void);
 int change_dir(char *command);
-void create_env(char **env);
+char *create_env(char *name, char *value);
 
 /*prototypes for helper functions*/
 int _strlen(const char *s);
@@ -45,9 +45,9 @@ void print_number(int n);
 size_t _strspn(const char *s, const char *accept);
 
 /*prototypes for readline*/
-ssize_t my_getline();
+ssize_t my_getline(void);
 void prompt_user(void);
 
 /*prototype for path*/
-char *_getenv(const char* name);
+char *_getenv(const char *name);
 #endif
