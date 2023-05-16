@@ -25,7 +25,7 @@ extern char **environ;
 /*prototypes for builtin*/
 int get_display_env(void);
 int change_dir(char *command);
-char *create_env(char *name, char *value);
+
 
 /*prototypes for helper functions*/
 int _strlen(const char *s);
@@ -50,4 +50,5 @@ void prompt_user(void);
 
 /*prototype for path*/
 char *_getenv(const char *name);
+void display_environ(char **env);
 #endif

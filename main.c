@@ -3,7 +3,7 @@
  * main - main file for all main ececution files
  * Return: 0
  */
-int main(__attribute__((unused))int argc, __attribute__((unused))char *argv[], char**envp)
+int main(__attribute__((unused))int argc, __attribute__((unused))char **argv[], char**envp)
 {
 	ssize_t n, exe;
 	pid_t pid;
@@ -55,11 +55,7 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char *argv[], c
 		exit(EXIT_SUCCESS);
 	}
 
-	/*	for (k = 0; args[k] != NULL; k++)
-		{
-			printf("%s\n", args[k]);
-		}*/
-		
+			
 		 pid = fork();
 
                     	if (pid == -1)
