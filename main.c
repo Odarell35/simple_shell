@@ -46,13 +46,32 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char **argv[], 
 			i++;
 		}
 		args[i] = NULL;
-		
+	/* implement any builtin functions*/	
 	if (_strcmp(args[0], "exit") == 0)
 	{
 		free(buf);
 		free(str);
 		free(token);
 		exit(EXIT_SUCCESS);
+	}
+	/* check if command is executable*/
+	if (status_file(args[0],statbuf) == -1)
+	{
+		/*look for path*/
+		true_path = look_path(args[0]);
+			if (true_path == NULL)
+			{
+				perror("Error: file nto found");
+				free(buf);
+				free(str);
+				free(token);
+				continue;
+			}
+			else
+			{
+				free(args[0]);
+				args[0] = true_path;
+			}
 	}
 
 			

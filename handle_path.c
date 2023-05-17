@@ -57,12 +57,12 @@ char *look_path(char *command)
 		check_status = stat(true_path, statbuf);
 		if(check_status == 0)
 		{
-			free(array_of_dir);
+			free_arr(array_of_dir);
 			return (true_path);
 		}
 	}
 /*if path not found*/
-	free(array_of_dir);
+	free_arr(array_of_dir);
 	free(true_path);
 	return (NULL);
 }
