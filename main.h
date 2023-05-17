@@ -54,4 +54,5 @@ void prompt_user(void);
 char *_getenv(const char *name);
 char *look_path(char *command);
 char *concat_path(char *token, char *exe_command);
+int examine_command(char *input, char **command,char argv, int sec);
 #endif
