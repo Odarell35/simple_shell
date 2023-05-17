@@ -36,9 +36,11 @@ char *concat_path(char *token, char *exe_command)
 char *look_path(char *command)
 {
 	int i, j, check_status;
-	char *true_path, *path, *token_path, delim;
+	struct stat statbuf;
+	char *true_path, *path, *token_path, *delim;
 	char **array_of_dir;
 
+	array_of_dir = NULL;
 	delim = ":";
 	path = _getenv("PATH");
 	token_path = strtok(path, delim);
@@ -49,12 +51,12 @@ char *look_path(char *command)
 		token_path = strtok(NULL, delim);
 	}
 	array_of_dir[i] = NULL;
-	printf("%s\n", array_of_di[i + 1]);
+	printf("%s\n", array_of_dir[i + 1]);
 	
 	for (j = 0; array_of_dir[i] != NULL; j++)
 	{
 		true_path = concat_path(array_of_dir[i], command);
-		check_status = stat(true_path, statbuf);
+		check_status = stat(true_path, &statbuf);
 		if(check_status == 0)
 		{
 			free_arr(array_of_dir);

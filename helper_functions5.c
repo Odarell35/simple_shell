@@ -5,7 +5,7 @@
  * @statbuf:stores the status of file
  * Return: 0 on success and -1 faiure
  */
-int status_file(char *pathname, struct stat *statbuf)
+int status_file(const char *pathname, struct stat *statbuf)
 {
 	int results;
 
