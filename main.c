@@ -67,12 +67,23 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char **argv[], 
                     	if (exe == -1)
                     	{
                             	perror("Error");
+				free(buf);
+				free(token);
+				free(str);
                     	}
 
             	}
              	else
              	{
                     	wait(&status);
+			if(!wait)
+			{
+				perror("Error: wait failed");
+				free(buf);
+				free(token);
+				free(str);
+			}
+				    
              	}
 
 		

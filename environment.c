@@ -26,38 +26,25 @@ void display_environ(char **env)
  * Return: pointer to string
  */
 
-char *_getenv(const char* name)
+char *_getenv(const char *name)
 {
-	
+	char **env;
 	size_t len;
-	int i;
 
 	 if (name == NULL) {
         return NULL;
     }
 
-    for ( i = 0; environ[i] != NULL; i++)
+    for (env = environ; *env != NULL; env++)
     {
         len = _strlen(name);
-        if (strncmp(name, environ[i], len) == 0)
+        if (strncmp(name, *env, len) == 0 && (*env)[len] == '=')
 	{
-             /*Found the environment variable, extract the value and return it*/
-          return (_strdup(environ[i] + len + 1));
-	}
-    }	
-    
-  /*Environment variable not found*/
-  return (NULL);
-}
-/**
- * main - testing these functions
- */
-int main(void)
-{
-	char *name;
+            /* Found the environment variable, extract the value and return it*/
+            return (&((*env)[len + 1]));
+        }
+    }
 
-	name = _getenv("PATH");
-	printf("%s\n", *environ);
-	printf("%s\n", name);
-	return(0);
+    /* Environment variable not found*/
+    return (NULL);
 }

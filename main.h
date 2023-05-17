@@ -23,7 +23,7 @@ extern char **environ;
 #define BUFFER_SIZE 1024
 
 /*prototypes for builtin*/
-int get_display_env(void);
+void display_environ(char **env);
 int change_dir(char *command);
 
 
@@ -50,5 +50,6 @@ void prompt_user(void);
 
 /*prototype for path*/
 char *_getenv(const char *name);
-void display_environ(char **env);
+char *look_path(char *command);
+char *concat_path(char *token, char *exe_command);
 #endif
