@@ -40,26 +40,27 @@ ssize_t my_getline()
 	while (buf != EOF && buf != '\n')
 	{
 		nread = read(STDIN_FILENO, &new_buf[byte_size], 1);
-		if (nread == 0)
-		{
-			if (byte_size == 0)
-			{
-				free(new_buf);
-				return (0);
-			}
-			else 
-			{
-				break;
-			}
-		}
-		else
+		if (nread == -1)
 		{
 			perror("read failed");
 			free(new_buf);
 			exit(EXIT_FAILURE);
 		}
+		else if (nread == 0)
+		{
+			if (byte_size == 0)
+			{
+				free(new_buf);
+				return(0);
+			}
+			else
+			{
+				break;
+			}
+		}
 
 		byte_size++;
+		
 		if (byte_size == buf_size)
 		{
 			buf_size = buf_size * 2;

@@ -52,12 +52,12 @@ char *look_path(char *command)
 	}
 	array_of_dir[i] = NULL;
 	printf("%s\n", array_of_dir[i + 1]);
-	
+
 	for (j = 0; array_of_dir[i] != NULL; j++)
 	{
 		true_path = concat_path(array_of_dir[i], command);
 		check_status = stat(true_path, &statbuf);
-		if(check_status == 0)
+		if (check_status == 0)
 		{
 			free_arr(array_of_dir);
 			return (true_path);
