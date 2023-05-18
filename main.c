@@ -9,15 +9,16 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char **argv, ch
 	pid_t pid;
 	struct stat statbuf;
 	char *str, *true_path;
-	int i, status;
+	int i, status, no_of_token, j;
 	size_t buf_size;
 	char *buf, *token, *delim;
-	char *args[10];
+	char **args;
 
 
 	while (1)
 {
 	buf_size = BUFFER_SIZE;
+	no_of_token = 0;
 	n = 0;
 	delim = " ";
 	buf = malloc(sizeof(char) * buf_size);
@@ -30,7 +31,6 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char **argv, ch
 	_putchar('\n');	
 		free(buf);
 		free(str);
-		free(token);
 		exit(EXIT_SUCCESS);
 	}
 
@@ -39,7 +39,14 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char **argv, ch
 	{buf[n - 1] = '\0';}
 	_strcpy(str, buf);
 	token = strtok(str, delim);
-	i = 0;
+	for (j = 0; token != NULL; j++)
+	{
+		no_of_token++;
+		token = strtok(NULL, delim);
+	}
+	token = strtok(str, delim);
+	args = malloc(sizeof(char *) * no_of_token + 1);
+		i = 0;
 		while (token && i < 10)
 		{
 			args[i] = token;
@@ -53,6 +60,7 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char **argv, ch
 		free(buf);
 		free(str);
 		free(token);
+		free_arr(args);
 		exit(EXIT_SUCCESS);
 	}
 	/* check if command is executable*/
@@ -63,12 +71,14 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char **argv, ch
 			if (true_path == NULL)
 			{
 				perror("Error: file nto found");
+				free_arr(args);
 				free(buf);
-				free(str);
 				free(token);
+				free(str);
+			
 				continue;
 			}
-			else
+		else
 			{
 				free(args[0]);
 				args[0] = true_path;
@@ -87,9 +97,11 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char **argv, ch
                     	if (exe == -1)
                     	{
                             	perror("Error");
+				free_arr(args);
 				free(buf);
 				free(token);
 				free(str);
+				exit(EXIT_FAILURE);
                     	}
 
             	}
@@ -107,9 +119,10 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char **argv, ch
              	}
 
 		
+	free(args);
 	free(buf);
 	free(token);
 	free(str);
-}
+	}
 	return (0);
 }

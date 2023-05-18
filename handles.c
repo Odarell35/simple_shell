@@ -8,7 +8,7 @@
  * @n: signal
  * Return: nothing
  */
-void handle_signal(void)
+/*void handle_signal(void)
 {
 	signal(SIGINT, handle_signal);
 
@@ -69,7 +69,7 @@ void handle_signal(void)
 		printf("\n$ ");
 		fflush(stdout);
 
-}
+}*/
 
 /**
  * hashtag - removes anything after # sign

@@ -9,22 +9,23 @@ char *concat_path(char *token, char *exe_command)
 {
 	char *result;
 
-	result = malloc(sizeof(char) * (_strlen(token) + _strlen(exe_command)) + 2);
+	result = malloc(sizeof(char) * (_strlen(token) + _strlen(exe_command) + 2));
 
 	if (result == NULL)
 	{
-		return (NULL);
 		free(result);
+		return (NULL);
+		
 	}
 
 	result = _strcat(result, token);
 	result = _strcat(result, "/");
 	result = _strcat(result, exe_command);
 
-	if (result != NULL)
-	{
+/*	if (result != NULL)*/
+	
 		free(result);
-	}
+	
 		return (result);
 }
 /**
@@ -35,15 +36,25 @@ char *concat_path(char *token, char *exe_command)
  */
 char *look_path(char *command)
 {
-	int i, j, check_status;
+	int i, j, check_status, no_of_dir;
 	struct stat statbuf;
 	char *true_path, *path, *token_path, *delim;
 	char **array_of_dir;
 
-	array_of_dir = NULL;
+	no_of_dir = 0;
 	delim = ":";
+	true_path = NULL;
 	path = _getenv("PATH");
 	token_path = strtok(path, delim);
+
+	while (token_path != NULL)
+	{
+		no_of_dir++;
+		token_path = strtok(NULL, delim);
+	}
+	  array_of_dir = malloc(sizeof(char *) * (no_of_dir + 1));
+	  token_path = strtok(path, delim);
+
 
 	for (i = 0; token_path != NULL; i++)
 	{
@@ -51,17 +62,20 @@ char *look_path(char *command)
 		token_path = strtok(NULL, delim);
 	}
 	array_of_dir[i] = NULL;
-	printf("%s\n", array_of_dir[i + 1]);
+/*printf("%s\n", array_of_dir[i + 1]);*/
 
-	for (j = 0; array_of_dir[i] != NULL; j++)
+	for (j = 0; array_of_dir[j]!= NULL; j++)
 	{
-		true_path = concat_path(array_of_dir[i], command);
+		true_path = concat_path(array_of_dir[j], command);
 		check_status = stat(true_path, &statbuf);
 		if (check_status == 0)
 		{
-			free_arr(array_of_dir);
+			
 			return (true_path);
+			
 		}
+		
+		
 	}
 /*if path not found*/
 	free_arr(array_of_dir);
