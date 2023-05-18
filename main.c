@@ -55,14 +55,16 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char **argv, ch
 		}
 		args[i] = NULL;
 	/* implement any builtin functions*/	
-	if (_strcmp(args[0], "exit") == 0)
+	/*if (_strcmp(args[0], "exit") == 0)
 	{
 		free(buf);
 		free(str);
 		free(token);
 		free_arr(args);
 		exit(EXIT_SUCCESS);
-	}
+	}*/
+		check_builtin(args[0]);
+		continue;
 	/* check if command is executable*/
 	if (status_file(args[0], &statbuf) == -1)
 	{

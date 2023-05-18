@@ -25,6 +25,8 @@ extern char **environ;
 /*prototypes for builtin*/
 void display_environ(char **env);
 int change_dir(char *command);
+void exit_myshell(char **command);
+void check_builtin(char *command);
 
 
 /*prototypes for helper functions*/
