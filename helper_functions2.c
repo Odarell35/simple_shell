@@ -31,13 +31,13 @@ int _strcmp(char *s1, const char *s2)
  */
 int _strncmp(const char *s1, char *s2, int n)
 {
-	int i;
+	int i = 0;
 
 	if (s1 == NULL)
 	{
 		return (-1);
 	}
-		i = 0;
+
 
 		while (s2[i] && i < n)
 		{
@@ -50,26 +50,12 @@ int _strncmp(const char *s1, char *s2, int n)
 				return (1);
 			}
 		}
-		return (0);
 
 	if (s1 == NULL)
 	{
-		return (-1);
+		return (0);
 	}
-		i = 0;
-	while (s2[i] && i < n)
-	{
-		if (s1[i] == s2[i])
-		{
-			i++;
-			return (0);
-		}
-	}
-	/**
-	 *  if (s1[i] == '\0')
-	 {
-		break;}
-	*/
+
 	return (1);
 }
 
