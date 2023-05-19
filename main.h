@@ -4,6 +4,7 @@
 extern char **environ;
 
 
+
 /* LIBS USED*/
 
 #include <stddef.h>
@@ -24,9 +25,10 @@ extern char **environ;
 
 /*prototypes for builtin*/
 void display_environ(char **env);
-int change_dir(char *command);
+int change_dir(char **command);
 void exit_myshell(char **command);
 int check_builtin(char **command);
+void display_alias();
 
 
 /*prototypes for helper functions*/

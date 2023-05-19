@@ -16,7 +16,11 @@ int check_builtin(char **command)
 	 }
 	 if (strncmp(command[0], "cd", 2) == 0)
 	 {
-		 change_dir(command[0]);
+		 change_dir(command);
+	 }
+	 if (strncmp(command[0], "alias", 5) == 0)
+	 {
+		 display_alias();
 	 }
 	 return (1);
 }
@@ -46,23 +50,24 @@ void exit_myshell(char **command)
  * @command: parsed command argument
  * Return: 0 on success, -1 on failure
  */
-int change_dir(char *command)
+int change_dir(char **command)
 {
-	char *path = NULL;
+	
 	char current_wd[BUFFER_SIZE];
 
-	if (command == NULL) {
+	if (command[1] == NULL) {
 		/* if no path is given, go to the home directory */
-		path = _getenv("HOME");
-	} else if (_strcmp(command, "-") == 0) {
+		chdir(_getenv("HOME"));
+	} 
+	if (_strcmp(command[0], "-") == 0) {
 		/* if "-" is given, go to the previous directory */
-		path = _getenv("OLDPWD");
-	} else {
+		chdir(_getenv("OLDPWD"));
+	} 
+	
 		/* otherwise, use the given path */
-		path = command;
-	}
+			
 
-	if (chdir(path) == -1) {
+	if (chdir(command[1]) == -1) {
 		/* try to change the directory */
 		perror("chdir");
 		return (-1);
