@@ -7,8 +7,7 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char **argv, ch
 {
 	ssize_t n, exe;
 	pid_t pid;
-	struct stat statbuf;
-	char *str, *true_path;
+	char *str;
 	int i, status, no_of_token, j;
 	size_t buf_size;
 	char *buf, *token, *delim;
@@ -63,12 +62,12 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char **argv, ch
 		free_arr(args);
 		exit(EXIT_SUCCESS);
 	}*/
-		check_builtin(args[0]);
+		check_builtin(args);
 		continue;
-	/* check if command is executable*/
+	/* check if command is executable
 	if (status_file(args[0], &statbuf) == -1)
 	{
-		/*look for path*/
+		look for path
 		true_path = look_path(args[0]);
 			if (true_path == NULL)
 			{
@@ -85,7 +84,7 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char **argv, ch
 				free(args[0]);
 				args[0] = true_path;
 			}
-	}
+	}*/
 
 			
 		 pid = fork();

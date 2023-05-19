@@ -4,19 +4,19 @@
  * @command: command to check
  * Return: 1 succes 0 fail
  */
-void check_builtin(char *command)
+void check_builtin(char **command)
 {
-	 if (_strncmp(command, "exit", 4) == 0)
+	 if (strncmp(command[0], "exit", 4) == 0)
 	 {
-		 exit_myshell(args);
+		 exit_myshell(command);
         }
-	 if (_strncmp(command, "env", 3) == 0)
+	 if (strncmp(command[0], "env", 3) == 0)
 	 {
 		 display_environ(environ);
 	 }
-	 if (_strncmp(command, "cd", 2) == 0)
+	 if (strncmp(command[0], "cd", 2) == 0)
 	 {
-		 change_dir(command);
+		 change_dir(command[0]);
 	 }
 }
 /**
