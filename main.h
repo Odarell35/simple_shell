@@ -26,7 +26,7 @@ extern char **environ;
 void display_environ(char **env);
 int change_dir(char *command);
 void exit_myshell(char **command);
-void check_builtin(char **command);
+int check_builtin(char **command);
 
 
 /*prototypes for helper functions*/
@@ -57,4 +57,22 @@ char *_getenv(const char *name);
 char *look_path(char *command);
 char *concat_path(char *token, char *exe_command);
 int examine_command(char *input, char **command,char argv, int sec);
+/*prototype alias*/
+/**
+ * struct alias - implementation of alias
+ * @name: name of alias
+ * @value: value of alias
+ * @next: pointer to next node
+ */
+typedef struct alias
+{
+    char *name;
+    char *value;
+    struct alias *next;
+}alias_t;
+int handle_alias(alias_t **alias_list, char **argv);
+int set_alias(alias_t **alias_list, const char *name, const char *value);
+int delete_alias(alias_t **alias_list, const char *name);
+void print_aliases(alias_t *alias_list);
+void print_alias(alias_t *alias_list, const char *name);
 #endif

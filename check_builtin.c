@@ -4,7 +4,7 @@
  * @command: command to check
  * Return: 1 succes 0 fail
  */
-void check_builtin(char **command)
+int check_builtin(char **command)
 {
 	 if (strncmp(command[0], "exit", 4) == 0)
 	 {
@@ -18,6 +18,7 @@ void check_builtin(char **command)
 	 {
 		 change_dir(command[0]);
 	 }
+	 return (1);
 }
 /**
  * exit_myshell - exits the shell

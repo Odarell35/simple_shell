@@ -3,7 +3,7 @@
  * main - main file for all main ececution files
  * Return: 0
  */
-int main(__attribute__((unused))int argc, __attribute__((unused))char **argv, char**envp)
+int main(__attribute__((unused))int argc, char **args, char **envp)
 {
 	ssize_t n, exe;
 	pid_t pid;
@@ -11,7 +11,7 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char **argv, ch
 	int i, status, no_of_token, j;
 	size_t buf_size;
 	char *buf, *token, *delim;
-	char **args;
+/*char **args;*/
 
 
 	while (1)
@@ -22,8 +22,8 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char **argv, ch
 	delim = " ";
 	buf = malloc(sizeof(char) * buf_size);
 	str = malloc(sizeof (char) * buf_size);
+
 	prompt_user();
-/*	signal(SIGINT, handle_signal);*/
 	n = getline(&buf, &buf_size, stdin);
 	if (n == -1)
 	{
@@ -33,7 +33,7 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char **argv, ch
 		exit(EXIT_SUCCESS);
 	}
 
-	/*write(STDOUT_FILENO, buf, n);*/
+
 	if (buf[n - 1] == '\n')
 	{buf[n - 1] = '\0';}
 	_strcpy(str, buf);
@@ -54,15 +54,7 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char **argv, ch
 		}
 		args[i] = NULL;
 	/* implement any builtin functions*/	
-	/*if (_strcmp(args[0], "exit") == 0)
-	{
-		free(buf);
-		free(str);
-		free(token);
-		free_arr(args);
-		exit(EXIT_SUCCESS);
-	}*/
-		check_builtin(args);
+		if(check_builtin(args) == 0)
 		continue;
 	/* check if command is executable
 	if (status_file(args[0], &statbuf) == -1)
