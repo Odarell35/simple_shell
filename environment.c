@@ -37,7 +37,7 @@ char *_getenv(const char *name)
     for (env = environ; *env != NULL; env++)
     {
         len = _strlen(name);
-        if (strncmp(name, *env, len) == 0 && (*env)[len] == '=')
+        if (_strncmp(name, *env, len) == 0 && (*env)[len] == '=')
 	{
             /* Found the environment variable, extract the value and return it*/
             return (&((*env)[len + 1]));

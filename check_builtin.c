@@ -7,22 +7,22 @@
 int check_builtin(char **command)
 {
 	
-	 if (strncmp(command[0], "exit", 4) == 0)
+	 if (_strncmp(command[0], "exit", 4) == 0)
 	 {
 		 exit_myshell(command);
 		 return (0);
         }
-	 if (strncmp(command[0], "env", 3) == 0)
+	 if (_strncmp(command[0], "env", 3) == 0)
 	 {
 		 display_environ(environ);
 		 return (0);
 	 }
-	 if (strncmp(command[0], "cd", 2) == 0)
+	 if (_strncmp(command[0], "cd", 2) == 0)
 	 {
 		 change_dir(command);
 		 return (0);
 	 }
-	 if (strncmp(command[0], "alias", 5) == 0)
+	 if (_strncmp(command[0], "alias", 5) == 0)
 	 {
 		 display_alias();
 

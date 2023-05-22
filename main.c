@@ -15,7 +15,7 @@ int main(int argc, char **args, char **envp)
 	while (1)
 {
 	buf_size = 0;
-	no_of_token = 0;
+	argc  = 0;
 	n = 0;
 	delim = " ";
 	buf = NULL;;
@@ -91,7 +91,7 @@ int main(int argc, char **args, char **envp)
                     	exe = execve(args[0], args, envp);
                     	if (exe == -1)
                     	{
-                            	perror("Error");
+                            	perror("Error file not found");
 				free_arr(args);
 				free(buf);
 				free(token);
