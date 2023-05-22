@@ -27,36 +27,32 @@ int _strcmp(char *s1, const char *s2)
  * @s2: second string.
  * @n: amount of characters to compare.
  *
- * Return: 1 if the strings don't match otherwise 0
+ * Return: 0 if there is a match
  */
-int _strncmp(const char *s1, char *s2, int n)
+int _strncmp(const char *s1, const char *s2, int n)
 {
-	int i = 0;
-
+	int i;
+       
 	if (s1 == NULL)
 	{
 		return (-1);
 	}
 
 
-		while (s2[i] && i < n)
+	i = 0;	
+	while (s2[i] && i < n)
 		{
 			if (s1[i] == s2[i])
 			{
 				i++;
+			
 			}
 			else
 			{
 				return (1);
 			}
 		}
-
-	if (s1 == NULL)
-	{
-		return (0);
-	}
-
-	return (1);
+	return (0);
 }
 
 /**

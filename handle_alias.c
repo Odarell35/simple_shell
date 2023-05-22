@@ -25,7 +25,7 @@ void display_alias()
 	}
 
 }
-char *get_alias(conat char *name)
+char *get_alias(const char *name)
 {
 	char **alias_list;
 	char *alias[] = {"alias egrep='egrep --color=auto'",

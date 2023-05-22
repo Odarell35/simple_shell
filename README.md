@@ -1,4 +1,4 @@
-in this project we are making a simple basic shell. it will be able to read the commands of user input and also out put the given or expected results.
+In this project we are making a simple basic shell. it will be able to read the commands of user input and also out put the given or expected results.
 we are only two people that are working in this project namely sipho mabirimise and lerato mawasha.
 
 the topics that we covered are as follows:

@@ -3,14 +3,14 @@
  * main - main file for all main ececution files
  * Return: 0
  */
-int main(__attribute__((unused))int argc, char **args, char **envp)
+int main(int argc, char **args, char **envp)
 {
 	ssize_t n, exe;
 	pid_t pid;
-	int i, no_of_token, status, j, check;
+	int i, status, j, check;
 	size_t buf_size;
-	char *buf, *token, *delim, *true_path;
-	struct stat statbuf;
+	char *buf, *token, *delim;
+	/*struct stat statbuf;*/
 
 	while (1)
 {
@@ -36,11 +36,12 @@ int main(__attribute__((unused))int argc, char **args, char **envp)
 	token = strtok(buf, delim);
 	for (j = 0; token != NULL; j++)
 	{
-		no_of_token++;
+		argc++;
 		token = strtok(NULL, delim);
 	}
+	hashtag(buf);
 	token = strtok(buf, delim);
-	args = malloc(sizeof(char *) * no_of_token + 1);
+	args = malloc(sizeof(char *) * argc + 1);
 		i = 0;
 		while (token)
 		{

@@ -35,6 +35,7 @@ char *get_alias(const char *name);
 /*prototypes for helper functions*/
 int _strlen(const char *s);
 int _strcmp(char *s1, const char *s2);
+int _strncmp(const char *s1, const char *s2, int n);
 char *_strncpy(char *dest, char *src, size_t n);
 char *_strcat(char *dest, char *src);
 int to_int(char *str);
@@ -60,22 +61,6 @@ char *_getenv(const char *name);
 char *look_path(char *command);
 char *concat_path(char *token, char *exe_command);
 int examine_command(char *input, char **command,char argv, int sec);
-/*prototype alias*/
-/**
- * struct alias - implementation of alias
- * @name: name of alias
- * @value: value of alias
- * @next: pointer to next node
- */
-typedef struct alias
-{
-    char *name;
-    char *value;
-    struct alias *next;
-}alias_t;
-int handle_alias(alias_t **alias_list, char **argv);
-int set_alias(alias_t **alias_list, const char *name, const char *value);
-int delete_alias(alias_t **alias_list, const char *name);
-void print_aliases(alias_t *alias_list);
-void print_alias(alias_t *alias_list, const char *name);
+/*prototypes for handles*/
+void hashtag(char *str);
 #endif

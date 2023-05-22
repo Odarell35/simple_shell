@@ -57,7 +57,7 @@ char *look_path(char *command)
 	  token_path = strtok(path, delim);
 
 
-	for (i = 0; token_path[i] != NULL; i++)
+	for (i = 0; token_path != NULL; i++)
 	{
 		array_of_dir[i] = token_path;
 		token_path = strtok(NULL, delim);
