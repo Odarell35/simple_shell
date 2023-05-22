@@ -68,7 +68,7 @@ int change_dir(char **command)
 		/* if no path is given, go to the home directory */
 		chdir(_getenv("HOME"));
 	} 
-	if (_strcmp(command[0], "-") == 0) {
+	if (_strcmp(command[1], "-") == 0) {
 		/* if "-" is given, go to the previous directory */
 		chdir(_getenv("OLDPWD"));
 	} 
