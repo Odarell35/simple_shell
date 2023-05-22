@@ -25,3 +25,25 @@ void display_alias()
 	}
 
 }
+char *get_alias(conat char *name)
+{
+	char **alias_list;
+	char *alias[] = {"alias egrep='egrep --color=auto'",
+                "alias fgrep='fgrep --color=auto'",
+                "alias grep='grep --color=auto'",
+                "alias l='ls -CF'",
+                "alias la='ls -A'",
+                "alias ls='ls --color=auto'",
+                "alias ll='ls -alF'",
+                NULL};
+	size_t length_alias;
+	if (name == NULL)
+		return (NULL);
+	for (alias_list = alias; *alias_list != NULL; alias_list++)
+	{
+		length_alias = _strlen(name);
+		if(_strncmp(name, *alias_list, length_alias) == 0)
+			return(&((*alias_list)[length_alias]));
+	}
+	return (NULL);
+}

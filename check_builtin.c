@@ -25,6 +25,7 @@ int check_builtin(char **command)
 	 if (strncmp(command[0], "alias", 5) == 0)
 	 {
 		 display_alias();
+
 		 return (0);
 	 }
 	 else

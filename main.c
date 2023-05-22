@@ -9,7 +9,8 @@ int main(__attribute__((unused))int argc, char **args, char **envp)
 	pid_t pid;
 	int i, no_of_token, status, j, check;
 	size_t buf_size;
-	char *buf, *token, *delim;
+	char *buf, *token, *delim, *true_path;
+	struct stat statbuf;
 
 	while (1)
 {
@@ -52,17 +53,14 @@ int main(__attribute__((unused))int argc, char **args, char **envp)
 		check = check_builtin(args);
 			if (check == 0)
 			{
-				/*free(args[0]);
-                         free(buf);
-                         free(token);*/
-			      continue;
+			    continue;
 			}
 		
 
-					/* check if command is executable
-					if (status_file(args[0], &statbuf) == -1)
+					/* check if command is executable*/
+					/*if (status_file(args[0], &statbuf) == -1)
 					{
-						look for path
+					look for pat
 					true_path = look_path(args[0]);
 					if (true_path == NULL)
 					{

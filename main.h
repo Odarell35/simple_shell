@@ -29,6 +29,7 @@ int change_dir(char **command);
 void exit_myshell(char **command);
 int check_builtin(char **command);
 void display_alias();
+char *get_alias(const char *name);
 
 
 /*prototypes for helper functions*/

@@ -11,9 +11,13 @@ int status_file(const char *pathname, struct stat *statbuf)
 
 	results = stat(pathname, statbuf);
 	if (results == 0)
+	{
 		return (0);
+	}
 	else
+	{
 		return (-1);
+	}
 }
 /**
  * free_arr- freess array
