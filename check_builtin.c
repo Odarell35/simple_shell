@@ -85,24 +85,25 @@ int change_dir(char **command)
 		return (-1);
 	}
 
-	/* update the PWD and OLDPWD environment variables */
-	if (getcwd(current_wd, sizeof(current_wd)) == NULL)
-	{
-		perror("getcwd");
-		return (-1);
-	}
-
-	if (setenv("OLDPWD", _getenv("PWD"), 1) == -1)
-	{
-		perror("setenv");
-		return (-1);
-	}
-
-	if (setenv("PWD", current_wd, 1) == -1)
-	{
-		perror("setenv");
-		return (-1);
-	}
-
 	return (0);
+}
+
+/**
+ *
+ *
+ */
+
+void pwd(void)
+{
+	char cwd[4096];
+
+	if (getcwd(cwd, sizeof(cwd)) != NULL)
+	{
+		write("curent working directorie: %s\n", cwd);
+	}
+	else
+	{
+		perror("getcwd() error");
+	}
+
 }
