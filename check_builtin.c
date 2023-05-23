@@ -25,7 +25,6 @@ int check_builtin(char **command)
 	if (_strncmp(command[0], "alias", 5) == 0)
 	{
 		display_alias();
-
 		return (0);
 	}
 	else
@@ -45,15 +44,12 @@ void exit_myshell(char **command)
 	status_exit = 0;
 	if (command[1] == NULL)
 	{
-	/*free(command);*/
+	
 		exit(EXIT_SUCCESS);
-
 	}
 	status_exit = to_int(command[1]);
-	/*free_arr(command);*/
 	exit(status_exit);
 }
-
 /**
  * change_dir - change the current working directory
  * @command: parsed command argument
@@ -74,35 +70,28 @@ int change_dir(char **command)
 		/* if "-" is given, go to the previous directory */
 		chdir(_getenv("OLDPWD"));
 	}
-
 		/* otherwise, use the given path */
-
-
 	if (chdir(command[1]) == -1)
 	{
 		/* try to change the directory */
 		perror("chdir");
 		return (-1);
 	}
-
 	/* update the PWD and OLDPWD environment variables */
 	if (getcwd(current_wd, sizeof(current_wd)) == NULL)
 	{
 		perror("getcwd");
 		return (-1);
 	}
-
 	if (setenv("OLDPWD", _getenv("PWD"), 1) == -1)
 	{
 		perror("setenv");
 		return (-1);
 	}
-
 	if (setenv("PWD", current_wd, 1) == -1)
 	{
 		perror("setenv");
 		return (-1);
 	}
-
 	return (0);
 }
