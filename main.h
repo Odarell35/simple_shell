@@ -50,7 +50,7 @@ void print_string(const char *str);
 void print_number(int n);
 int status_file(const char *pathname, struct stat *statbuf);
 void free_arr(char **arr);
-void display_error(char **args);
+void display_error(void);
 size_t _strspn(const char *s, const char *accept);
 
 /*prototypes for readline*/
