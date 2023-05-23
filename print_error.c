@@ -5,7 +5,7 @@
  * 
  * Return: void
  */
-void display_error(char **args)
+void display_error(void)
 {
 	int i;
 
