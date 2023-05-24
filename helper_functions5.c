@@ -22,7 +22,6 @@ int status_file(const char *pathname, struct stat *statbuf)
 /**
  * free_arr- freess array
  * @arr: array to be freed
- * @size: size of array
  * Return: void
  */
 void free_arr(char **arr)
@@ -30,7 +29,7 @@ void free_arr(char **arr)
 	int i;
 
 	i = 0;
-	while(arr[i] != NULL)
+	while (arr[i] != NULL)
 	{
 		free(arr[i]);
 		i++;

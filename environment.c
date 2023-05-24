@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * create_env - Creates an array of environment variables
+ *  display_environ - Creates an array of environment variables
  * @env: Array of environment variables to be created
  * Return: void
  */

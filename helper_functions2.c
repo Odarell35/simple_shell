@@ -32,29 +32,25 @@ int _strcmp(char *s1, const char *s2)
 int _strncmp(const char *s1, const char *s2, int n)
 {
 	int i;
-       
+
 	if (s1 == NULL)
 	{
 		return (-1);
 	}
-
-
-	i = 0;	
+	i = 0;
 	while (s2[i] && i < n)
+	{
+		if (s1[i] == s2[i])
 		{
-			if (s1[i] == s2[i])
-			{
-				i++;
-			
-			}
-			else
+			i++;
+		}
+		else
 			{
 				return (1);
 			}
-		}
-	return (0);
+	}
+return (0);
 }
-
 /**
  * _strlen - returns the length of a string.
  * @s: input string.

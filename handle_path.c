@@ -10,23 +10,16 @@ char *concat_path(char *token, char *exe_command)
 	char *result;
 
 	result = malloc(sizeof(char) * (_strlen(token) + _strlen(exe_command) + 2));
-
 	if (result == NULL)
 	{
 		free(result);
 		return (NULL);
-		
 	}
-
 	result = _strcat(result, token);
 	result = _strcat(result, "/");
 	result = _strcat(result, exe_command);
-
-/*	if (result != NULL)*/
-	
-		free(result);
-	
-		return (result);
+	free(result);
+	return (result);
 }
 /**
  * look_path - looking for the executable file in the
@@ -53,18 +46,14 @@ char *look_path(char *command)
 		token_path = strtok(NULL, delim);
 		i++;
 	}
-	  array_of_dir = malloc(sizeof(char *) * no_of_dir + 1);
-	  token_path = strtok(path, delim);
-
-
+	array_of_dir = malloc(sizeof(char *) * (no_of_dir + 1));
+	token_path = strtok(path, delim);
 	for (i = 0; token_path != NULL; i++)
 	{
 		array_of_dir[i] = token_path;
 		token_path = strtok(NULL, delim);
 	}
 	array_of_dir[i] = NULL;
-printf("%ld\n", sizeof(array_of_dir));
-printf("%s\n", array_of_dir[2]);
 	for (j = 0;  j < 7 ; j++)
 	{
 		printf("%s\n", array_of_dir[2]);
@@ -73,17 +62,11 @@ printf("%s\n", array_of_dir[2]);
 		if (check_status == 0)
 		{
 			printf("%d\n", check_status);
-        printf("%s\n", true_path);
+			printf("%s\n", true_path);
 			return (true_path);
-		
-			
 		}
-	}	
-/*	printf("%d\n", check_status);
-	printf("%s\n", true_path);
-	}*/
-/*if path not found*/
+	}
 	free_arr(array_of_dir);
 	free(true_path);
-	return (NULL);
+return (NULL);
 }

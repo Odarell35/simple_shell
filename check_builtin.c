@@ -1,12 +1,11 @@
 #include "main.h"
-  /**
- * check_builtin - Function to check if the command is a built-in command
+ /**
+ * check_builtin- check if the command is a built-in function
  * @command: command to check
  * Return:  0  Succes 1 fail
  */
 int check_builtin(char **command)
 {
-
 	if (_strncmp(command[0], "exit", 4) == 0)
 	{
 		exit_myshell(command);
@@ -44,87 +43,10 @@ void exit_myshell(char **command)
 	status_exit = 0;
 	if (command[1] == NULL)
 	{
-	
 		free_arr(command);
 		exit(EXIT_SUCCESS);
 	}
 	status_exit = atoi(command[1]);
 	free_arr(command);
 	exit(status_exit);
-}
-/**
- * change_dir - change the current working directory
- * @command: parsed command argument
- * Return: 0 on success, -1 on failure
- */
-int change_dir(char **command)
-{
-
-	char current_wd[BUFFER_SIZE];
-
-	if (command[1] == NULL)
-	{
-	
-		if (chdir(_getenv("HOME")) == -1)
-			perror("chdir");
-	}
-	else if (_strcmp(command[1], "-") == 0)
-	{
-
-		/* if "-" is given, go to the previous directory */
-		chdir(_getenv("OLDPWD"));
-	}
-		/* otherwise, use the given path */
-	if (chdir(command[1]) == -1)
-	{
-	
-		char *old_pwd = _getenv("OLDPWD");
-		if (old_pwd == NULL)
-		{
-			printf("OLDPWD not set\n");
-			return (-1);
-		}
-
-		if (chdir(old_pwd) == -1)
-			perror("chdir");
-	}
-	else
-	{
-		if (chdir(command[1]) == -1)
-		{
-	
-		perror("chdir");
-		return (-1);
-	}
-	if (getcwd(current_wd, sizeof(current_wd)) == NULL)
-	{
-		perror("getcwd");
-		return (-1);
-	}
-	if (setenv("OLDPWD", _getenv("PWD"), 1) == -1)
-	{
-		perror("setenv");
-		return (-1);
-	}
-	if (setenv("PWD", current_wd, 1) == -1)
-	{
-		perror("setenv");
-		return (-1);
-		}
-	
-	
-        if (getcwd(current_wd, sizeof(current_wd)) == NULL)
-                perror("getcwd");
-        
-
-        if (setenv("OLDPWD", _getenv("PWD"), 1) == -1)
-                perror("setenv");
-
-        if (setenv("PWD", current_wd, 1) == -1)
-                perror("setenv");
-
-	return (0);
-
-	}
-	return (0);
 }

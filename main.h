@@ -28,7 +28,7 @@ void display_environ(char **env);
 int change_dir(char **command);
 void exit_myshell(char **command);
 int check_builtin(char **command);
-void display_alias();
+void display_alias(void);
 char *get_alias(const char *name);
 
 
@@ -54,14 +54,14 @@ void display_error(void);
 size_t _strspn(const char *s, const char *accept);
 
 /*prototypes for readline*/
-ssize_t my_getline(void);
+char *read_command(char *buf, size_t buf_size);
 void prompt_user(void);
 
 /*prototype for path*/
 char *_getenv(const char *name);
 char *look_path(char *command);
 char *concat_path(char *token, char *exe_command);
-int examine_command(char *input, char **command,char argv, int sec);
+int examine_command(char *input, char **command, char argv, int sec);
 /*prototypes for handles*/
 void hashtag(char *str);
 void handle_signal(int n);
