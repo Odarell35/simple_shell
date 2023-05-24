@@ -19,3 +19,18 @@ void hashtag(char *str)
 		index++;
 	}
 }
+/**
+ * handle_signal - handle signal
+ * @n: signal
+ * Return: nothing
+ */
+void handle_signal(int n)
+{
+	char *buf;
+
+	buf = "\n$";
+	if (n == SIGINT)
+	{
+		write(STDOUT_FILENO, buf, _strlen(buf));
+	}
+}

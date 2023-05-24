@@ -16,6 +16,7 @@ int main(int argc, char **args, char **envp)
 		read_file(args[1]);
 	}
 
+	signal(SIGINT, handle_signal);
 	while (1)
 {
 	buf_size = 0;

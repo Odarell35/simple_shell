@@ -45,9 +45,11 @@ void exit_myshell(char **command)
 	if (command[1] == NULL)
 	{
 	
+		free_arr(command);
 		exit(EXIT_SUCCESS);
 	}
-	status_exit = to_int(command[1]);
+	status_exit = atoi(command[1]);
+	free_arr(command);
 	exit(status_exit);
 }
 /**
