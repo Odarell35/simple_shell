@@ -58,7 +58,7 @@ char *int_to_string(int num)
 		str[i++] = num % 10 + '0';
 		num /= 10;
 	}
-	while (num)
+	while (num);
 	if (sign)
 	{
 		str[i++] = '-';

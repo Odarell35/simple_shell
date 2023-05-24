@@ -20,7 +20,7 @@ void read_file(char *filename)
 	{
 		perror("file not open");
 	}
-	nread_file = getline(&buf_file, &size_file, fdopen(fd O_RDONLY));
+	nread_file = getline(&buf_file, &size_file, fdopen(fd, O_RDONLY));
 	if (nread_file == -1)
 	{
 		_putchar('\n');
