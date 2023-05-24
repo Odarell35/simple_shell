@@ -1,6 +1,6 @@
 #include "main.h"
- /**
- * check_builtin- check if the command is a built-in function
+/**
+ * check_builtin - execute command if the command is a built-in function
  * @command: command to check
  * Return:  0  Succes 1 fail
  */

@@ -22,7 +22,6 @@ int change_dir(char **command)
 		old_pwd = _getenv("OLDPWD");
 		if (old_pwd == NULL)
 		{
-			printf("OLDPWD not set\n");
 			return (-1);
 		}
 		if (chdir(old_pwd) == -1)
@@ -30,24 +29,16 @@ int change_dir(char **command)
 	}
 	else
 	{
-		if (chdir(command[1]) == -1)
-		{
-			perror("chdir");
-			return (-1);
-		}
 	if (getcwd(current_wd, sizeof(current_wd)) == NULL)
 	{
-		perror("getcwd");
 		return (-1);
 	}
 	if (setenv("OLDPWD", _getenv("PWD"), 1) == -1)
 	{
-		perror("setenv");
 		return (-1);
 	}
 	if (setenv("PWD", current_wd, 1) == -1)
 	{
-		perror("setenv");
 		return (-1);
 	}
 	}

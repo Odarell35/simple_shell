@@ -29,10 +29,12 @@ int change_dir(char **command);
 void exit_myshell(char **command);
 int check_builtin(char **command);
 void display_alias(void);
+void call_for_execute(char **args, char **envp);
 char *get_alias(const char *name);
 
 
 /*prototypes for helper functions*/
+int count(char *token, char *buff);
 int _strlen(const char *s);
 int _strcmp(char *s1, const char *s2);
 int _strncmp(const char *s1, const char *s2, int n);
