@@ -74,7 +74,7 @@ int change_dir(char **command)
 	}
 		/* otherwise, use the given path */
 	if (chdir(command[1]) == -1)
-
+	{
 	
 		char *old_pwd = _getenv("OLDPWD");
 		if (old_pwd == NULL)
@@ -87,9 +87,7 @@ int change_dir(char **command)
 			perror("chdir");
 	}
 	else
-
 	{
-	
 		if (chdir(command[1]) == -1)
 		{
 	

@@ -18,7 +18,7 @@ int main(int argc, char **args, char **envp)
 	argc  = 0;
 	n = 0;
 	delim = " ";
-	buf = NULL;;
+	buf = NULL;
 	
 	prompt_user();
 	n = getline(&buf, &buf_size, stdin);
@@ -41,7 +41,7 @@ int main(int argc, char **args, char **envp)
 	}
 	hashtag(buf);
 	token = strtok(buf, delim);
-	args = malloc(sizeof(char *) * argc + 1);
+	args = malloc(sizeof(char *) * (argc + 1));
 		i = 0;
 		while (token)
 		{
