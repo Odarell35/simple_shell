@@ -10,7 +10,11 @@ int main(int argc, char **args, char **envp)
 	int i, status, j, check;
 	size_t buf_size;
 	char *buf, *token, *delim;
-	/*struct stat statbuf;*/
+	
+	if (args[1] != NULL)
+	{
+		read_file(args[1]);
+	}
 
 	while (1)
 {
@@ -19,7 +23,7 @@ int main(int argc, char **args, char **envp)
 	n = 0;
 	delim = " ";
 	buf = NULL;
-	
+	if (isatty(STDIN_FILENO))
 	prompt_user();
 	n = getline(&buf, &buf_size, stdin);
 	if (n == -1)

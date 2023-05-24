@@ -64,4 +64,6 @@ char *concat_path(char *token, char *exe_command);
 int examine_command(char *input, char **command,char argv, int sec);
 /*prototypes for handles*/
 void hashtag(char *str);
+/*prototype for file*/
+void read_file(char *filename);
 #endif
