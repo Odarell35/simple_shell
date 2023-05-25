@@ -56,13 +56,10 @@ char *look_path(char *command)
 	array_of_dir[i] = NULL;
 	for (j = 0;  j < 7 ; j++)
 	{
-		printf("%s\n", array_of_dir[2]);
 		true_path = concat_path(array_of_dir[j], command);
 		check_status = stat(true_path, &statbuf);
 		if (check_status == 0)
 		{
-			printf("%d\n", check_status);
-			printf("%s\n", true_path);
 			return (true_path);
 		}
 	}
