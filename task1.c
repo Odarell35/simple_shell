@@ -1,6 +1,13 @@
-#include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <string.h>
 
 #define MAX_COMMAND_LENGTH 100
+
+extern char **environ;
 
 void shell(void)
 {
@@ -28,7 +35,8 @@ void shell(void)
         }
         else if (pid == 0)
         {
-            execlp(command, command, NULL);
+            char *args[] = {command, NULL};
+            execve(command, args, environ);
             perror("exec");
             exit(EXIT_FAILURE);
         }
@@ -38,5 +46,11 @@ void shell(void)
             waitpid(pid, &status, 0);
         }
     }
+}
+
+int main(void)
+{
+    shell();
+    return 0;
 }
 
