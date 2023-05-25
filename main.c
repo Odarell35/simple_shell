@@ -35,6 +35,7 @@ int main(int argc, char **args, char **envp)
 		token = strtok(NULL, delim);
 	}
 	args[i] = NULL;
+	if(argc > 0)
 	if (check_builtin(args) == 0)
 	continue;
 	pid = fork();
