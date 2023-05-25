@@ -19,9 +19,5 @@ char *read_command(char  *buf, size_t buf_size)
 		free(buf);
 		exit(EXIT_SUCCESS);
 	}
-	if (buf[n - 1] == '\n')
-	{
-		buf[n - 1] = '\0';
-	}
-	return (buf);
+return (buf);
 }

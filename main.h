@@ -61,7 +61,8 @@ void prompt_user(void);
 
 /*prototype for path*/
 char *_getenv(const char *name);
-char *look_path(char *command);
+int execute(char *command, char **second_command);
+char look_path(char *command, char **cmd);
 char *concat_path(char *token, char *exe_command);
 int examine_command(char *input, char **command, char argv, int sec);
 /*prototypes for handles*/

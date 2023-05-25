@@ -27,43 +27,52 @@ char *concat_path(char *token, char *exe_command)
  * @command: executable file
  * Return: full path or NULL if not found
  */
-char *look_path(char *command)
+char look_path(char *command, char **cmd)
 {
-	int i, j, check_status, no_of_dir;
-	struct stat statbuf;
-	char *true_path, *path, *token_path, *delim;
-	char **array_of_dir;
+	int name_ptr;
+	char *path_cpy, *path, *token_path, *name;
+	const char *delim;
 
-	no_of_dir = 0;
 	delim = ":";
-	true_path = NULL;
-	path = _getenv("PATH");
-	token_path = strtok(path, delim);
-	i = 0;
+	name = NULL;
+	path = getenv("PATH");
+	path_cpy = strdup(path);
+	if (path_cpy == NULL)
+	{
+		free(path_cpy);
+		return (-1);
+	}
+	token_path = strtok(path_cpy, delim);
+	if (token_path == NULL)
+	{
+		perror(command);
+		return (-1);
+	}
+	name = malloc(strlen(token_path) + strlen(command) + 2);
+	if (name == NULL)
+	{
+		perror(command);
+		free(path_cpy);
+		return (-1);
+	}
+
 	while (token_path != NULL)
 	{
-		no_of_dir++;
-		token_path = strtok(NULL, delim);
-		i++;
-	}
-	array_of_dir = malloc(sizeof(char *) * (no_of_dir + 1));
-	token_path = strtok(path, delim);
-	for (i = 0; token_path != NULL; i++)
-	{
-		array_of_dir[i] = token_path;
-		token_path = strtok(NULL, delim);
-	}
-	array_of_dir[i] = NULL;
-	for (j = 0;  j < 7 ; j++)
-	{
-		true_path = concat_path(array_of_dir[j], command);
-		check_status = stat(true_path, &statbuf);
-		if (check_status == 0)
+		strcpy(name, token_path);
+		strcat(name, "/");
+		strcat(name, command);
+		if (access(name, X_OK) == 0)
 		{
-			return (true_path);
+			
+			name_ptr = execute(name, cmd);
+			free(path_cpy);
+			free(name);
+			return (name_ptr);
 		}
+		token_path = strtok(NULL, delim);
 	}
-	free_arr(array_of_dir);
-	free(true_path);
-return (NULL);
+free(path_cpy);
+free(name);
+perror(command);
+return (-1);
 }
