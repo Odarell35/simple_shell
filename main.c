@@ -21,7 +21,9 @@ int main(int argc, char **args, char **envp)
 	buf_size = argc  = 0;
 	delim = " ";
 	buf = NULL;
+	if(isatty(STDIN_FILENO))
 	prompt_user();
+	fflush(stdout);
 	buff = read_command(buf, buf_size);
 	argc = count(token, buff);
 	hashtag(buff);
