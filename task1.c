@@ -4,14 +4,71 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <string.h>
+#include <stdbool.h>
 
 #define MAX_COMMAND_LENGTH 100
+#define MAX_ARGUMENTS 10
 
 extern char **environ;
+
+bool is_builtin_command(const char *command)
+{
+    const char *builtins[] = {
+        "cd",
+        "pwd",
+        "exit"
+    };
+    int num_builtins = sizeof(builtins) / sizeof(char *);
+
+    for (int i = 0; i < num_builtins; i++)
+    {
+        if (strcmp(command, builtins[i]) == 0)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+void execute_builtin_command(const char *command, char *args[])
+{
+    if (strcmp(command, "cd") == 0)
+    {
+        if (args[1] != NULL)
+        {
+            if (chdir(args[1]) != 0)
+            {
+                perror("cd");
+            }
+        }
+        else
+        {
+            fprintf(stderr, "cd: missing argument\n");
+        }
+    }
+    else if (strcmp(command, "pwd") == 0)
+    {
+        char cwd[1024];
+        if (getcwd(cwd, sizeof(cwd)) != NULL)
+        {
+            printf("%s\n", cwd);
+        }
+        else
+        {
+            perror("pwd");
+        }
+    }
+    else if (strcmp(command, "exit") == 0)
+    {
+        exit(EXIT_SUCCESS);
+    }
+}
 
 void shell(void)
 {
     char command[MAX_COMMAND_LENGTH];
+    char *args[MAX_ARGUMENTS];
+
     while (1)
     {
         printf("$ ");
@@ -27,23 +84,39 @@ void shell(void)
             continue;
         }
 
-        pid_t pid = fork();
-        if (pid == -1)
+        char *token;
+        int i = 0;
+        token = strtok(command, " ");
+        while (token != NULL && i < MAX_ARGUMENTS - 1)
         {
-            perror("fork");
-            exit(EXIT_FAILURE);
+            args[i++] = token;
+            token = strtok(NULL, " ");
         }
-        else if (pid == 0)
+        args[i] = NULL;
+
+        if (is_builtin_command(args[0]))
         {
-            char *args[] = {command, NULL};
-            execve(command, args, environ);
-            perror("exec");
-            exit(EXIT_FAILURE);
+            execute_builtin_command(args[0], args);
         }
         else
         {
-            int status;
-            waitpid(pid, &status, 0);
+            pid_t pid = fork();
+            if (pid == -1)
+            {
+                perror("fork");
+                exit(EXIT_FAILURE);
+            }
+            else if (pid == 0)
+            {
+                execvp(args[0], args);
+                perror("exec");
+                exit(EXIT_FAILURE);
+            }
+            else
+            {
+                int status;
+                waitpid(pid, &status, 0);
+            }
         }
     }
 }
