@@ -19,6 +19,7 @@ int main(int argc __attribute__((unused)), char **argv __attribute__((unused)))
 	buf_size = 0;
 	delim = " \n";
 	buf = NULL;
+	if (isatty(STDIN_FILENO))
 	prompt_user();
 	fflush(stdout);
 	buff = getline(&buf, &buf_size, stdin);
