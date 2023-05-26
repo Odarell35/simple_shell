@@ -60,12 +60,13 @@ void shell(void);
 /*prototypes for readline*/
 char *read_command(char *buf, size_t buf_size);
 void prompt_user(void);
-
+int _print_error(char **argv, int cmd_num, char *command);
+ssize_t _getline(char **buf, size_t *buf_size, int status);
 
 /*prototype for path*/
 char *_getenv(const char *name);
-int execute(char *command, char **second_command);
-char look_path(char *command, char **cmd);
+int execute(char *command, char **second_command, char **argv, int cmd_num);
+int look_path(char *command, char **cmd, char **argv, int cmd_num);
 char *concat_path(char *token, char *exe_command);
 int examine_command(char *input, char **command, char argv, int sec);
 /*prototypes for handles*/
