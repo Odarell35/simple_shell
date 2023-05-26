@@ -11,7 +11,7 @@ int main(int argc __attribute__((unused)), char **argv __attribute__((unused)))
 	size_t buf_size;
        	ssize_t	buff;
 	char *buf, *token, *args[BUFFER_SIZE];
-      	 const char *delim;
+      	const char *delim;
 
 	signal(SIGINT, handle_signal);
 	while (1)
@@ -44,6 +44,6 @@ int main(int argc __attribute__((unused)), char **argv __attribute__((unused)))
 		execute(args[0], args); 
 	}
 	free(buf);
-}
+	}
 return (0);
 }

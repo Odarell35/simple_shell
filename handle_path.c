@@ -14,7 +14,7 @@ char look_path(char *command, char **cmd)
 	delim = ":";
 	name = NULL;
 	path = getenv("PATH");
-	path_cpy = _strdup(path);
+	path_cpy = strdup(path);
 	if (path_cpy == NULL)
 	{
 		free(path_cpy);

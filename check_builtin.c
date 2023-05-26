@@ -43,10 +43,11 @@ void exit_myshell(char **command)
 	status_exit = 0;
 	if (command[1] == NULL)
 	{
-		free_arr(command);
 		exit(EXIT_SUCCESS);
 	}
-	status_exit = atoi(command[1]);
-	free_arr(command);
-	exit(status_exit);
+	else
+	{
+		status_exit = atoi(command[1]);
+		exit(status_exit);
+	}
 }

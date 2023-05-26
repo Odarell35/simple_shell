@@ -61,6 +61,7 @@ void shell(void);
 char *read_command(char *buf, size_t buf_size);
 void prompt_user(void);
 
+
 /*prototype for path*/
 char *_getenv(const char *name);
 int execute(char *command, char **second_command);
