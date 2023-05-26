@@ -32,14 +32,17 @@ int main(int argc __attribute__((unused)), char **argv __attribute__((unused)))
 	if (buf[0] != '\n')	
 	{
 		token = strtok(buf, delim);
+		if (token == NULL)
+		{
+			free(buf);
+			continue;
+		}
 		for (i = 0; token != NULL; i++)
 		{
 			args[i] = token;
 			token = strtok(NULL, delim);
 		}
 		args[i] = NULL;
-		if (args == NULL || args[0] == NULL)
-			break;
 		if (check_builtin(args) == 0)
 			continue;
 		execute(args[0], args); 
