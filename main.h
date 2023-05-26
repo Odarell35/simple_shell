@@ -55,6 +55,8 @@ void free_arr(char **arr);
 void display_error(void);
 size_t _strspn(const char *s, const char *accept);
 
+void shell(void);
+
 /*prototypes for readline*/
 char *read_command(char *buf, size_t buf_size);
 void prompt_user(void);
