@@ -39,7 +39,7 @@ int main(int argc __attribute__((unused)), char **argv __attribute__((unused)))
 		}
 		args[i] = NULL;
 		if (args == NULL || args[0] == NULL)
-			continue;
+			break;
 		if (check_builtin(args) == 0)
 			continue;
 		execute(args[0], args); 
