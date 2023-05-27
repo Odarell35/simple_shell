@@ -37,9 +37,10 @@ int main(int argc __attribute__((unused)), char **argv)
 				token = strtok(NULL, delim);
 			}
 			args[i] = NULL;
-			if (check_builtin(args) == 0)
-				continue;
-			status = execute(args[0], args, argv, cmd_num);
+			if (check_builtin(args, status, &buf) == 0)
+				status = 0;
+			else
+				status = execute(args[0], args, argv, cmd_num);
 		}
 		free(buf);
 	}

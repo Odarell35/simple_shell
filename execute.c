@@ -28,7 +28,7 @@ int execute(char *command, char **second_command, char **argv, int cmd_num)
 	int status = 0;
 	pid_t pid;
 
-	if(access(command, X_OK) == 0 && is_valid_cmd(command))
+	if (access(command, X_OK) == 0 && is_valid_cmd(command))
 	{
 		pid = fork();
 		if (pid == -1)
@@ -50,5 +50,5 @@ int execute(char *command, char **second_command, char **argv, int cmd_num)
 	}
 	else
 		return (look_path(command, second_command, argv, cmd_num));
-	return (-1);
+	return (status);
 }

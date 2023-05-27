@@ -26,8 +26,8 @@ extern char **environ;
 /*prototypes for builtin*/
 void display_environ(char **env);
 int change_dir(char **command);
-void exit_myshell(char **command);
-int check_builtin(char **command);
+void exit_myshell(char **command, int status, char **buf);
+int check_builtin(char **command, int status, char **buf);
 void display_alias(void);
 void call_for_execute(char **args, char **envp);
 char *get_alias(const char *name);

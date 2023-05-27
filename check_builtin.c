@@ -2,13 +2,15 @@
 /**
  * check_builtin - execute command if the command is a built-in function
  * @command: command to check
+ * @status: number of executions
+ * @buf: user input
  * Return:  0  Succes 1 fail
  */
-int check_builtin(char **command)
+int check_builtin(char **command, int status, char **buf)
 {
 	if (_strncmp(command[0], "exit", 4) == 0)
 	{
-		exit_myshell(command);
+		exit_myshell(command, status, buf);
 		return (0);
 	}
 	if (_strncmp(command[0], "env", 3) == 0)
@@ -34,20 +36,24 @@ int check_builtin(char **command)
 /**
  * exit_myshell - exits the shell
  * @command: the pointer to tokenized command
+ * @status: number of executions
+ * @buf: input
  * Return: void
  */
-void exit_myshell(char **command)
+void exit_myshell(char **command, int status, char **buf)
 {
 	int status_exit;
 
 	status_exit = 0;
 	if (command[1] == NULL)
 	{
-		exit(EXIT_SUCCESS);
+		free(*buf);
+		exit(status);
 	}
 	else
 	{
 		status_exit = atoi(command[1]);
+		free(*buf);
 		exit(status_exit);
 	}
 }
